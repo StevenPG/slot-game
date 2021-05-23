@@ -6,8 +6,8 @@ export default class Scoreboard {
     private winAmountText: PIXI.Text;
     private moneyText: PIXI.Text;
     private winAmount: number = 0;
-    private money: number = 100;
-    private bet: number = 5;
+    private money: number = 0;
+    private bet: number = 3;
 
     constructor(app: PIXI.Application) {
         this.container = new PIXI.Container();
@@ -20,7 +20,11 @@ export default class Scoreboard {
             this.moneyText.text = `money: $${this.money}`;
         }
         if (this.money - this.bet < 0) {
-            this.outOfMoney = true;
+            
+            // This is for a little old lady, we're just gonna
+            // give her more money
+            this.outOfMoney = false;
+            this.money = 999
         }
     }
 
