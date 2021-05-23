@@ -6,7 +6,7 @@ export default class Scoreboard {
     private winAmountText: PIXI.Text;
     private moneyText: PIXI.Text;
     private winAmount: number = 0;
-    private money: number = 0;
+    private money: number = 999;
     private bet: number = 3;
 
     constructor(app: PIXI.Application) {

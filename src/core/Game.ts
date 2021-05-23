@@ -25,6 +25,7 @@ export default class Game {
         this.createReels();
         this.createScoreboard();
         this.createVictoryScreen();
+        this.addKeyListeners();
     }
 
     private createScene() {
@@ -66,5 +67,12 @@ export default class Game {
         }
 
         if (!this.scoreboard.outOfMoney) this.playBtn.setEnabled();
+    }
+
+    private addKeyListeners() {
+        window.addEventListener(
+            "keydown", (e: Event) => {
+                this.handleStart()
+            }, false);
     }
 }
