@@ -46,6 +46,7 @@ export default class Game {
     private createScoreboard() {
         this.scoreboard = new Scoreboard(this.app);
         this.app.stage.addChild(this.scoreboard.container);
+        this.app.stage.addChild(this.scoreboard.titleContainer);
     }
 
     private createVictoryScreen() {

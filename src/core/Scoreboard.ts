@@ -2,6 +2,8 @@ import * as PIXI from 'pixi.js';
 
 export default class Scoreboard {
     public container: PIXI.Container;
+    public titleContainer: PIXI.Container;
+
     public outOfMoney = false;
     private winAmountText: PIXI.Text;
     private moneyText: PIXI.Text;
@@ -9,8 +11,11 @@ export default class Scoreboard {
     private money: number = 999;
     private bet: number = 3;
 
+    private titleText: PIXI.Text;
+
     constructor(app: PIXI.Application) {
         this.container = new PIXI.Container();
+        this.titleContainer = new PIXI.Container();
         this.generate(app.screen.width, app.screen.height);
     }
 
@@ -43,6 +48,16 @@ export default class Scoreboard {
             fill: 'yellow',
         });
 
+        const titleStyle = new PIXI.TextStyle({
+            fontFamily: 'Arial',
+            fontSize: 38,
+            fill: 'yellow',
+        })
+
+        // TMP
+        this.titleText = new PIXI.Text(`Nonna's\nSlot\nMachine`, titleStyle);
+        this.titleText.y = 1;
+
         this.moneyText = new PIXI.Text(`money: $${this.money}`, style);
         this.moneyText.y = 5;
 
@@ -60,8 +75,13 @@ export default class Scoreboard {
         rect.drawRect(0, 0, 160, rectHeight);
         rect.endFill();
 
-        this.container.x = appWidth - rect.width - 7;
+        this.titleContainer.x = appWidth / 2 + 320;
+        this.titleContainer.y = appHeight / 30;
+        this.titleContainer.addChild(this.titleText)
+
+        this.container.x = appWidth - rect.width - 4;
         this.container.y = appHeight / 2 + 70;
-        this.container.addChild(rect, this.moneyText, betText, this.winAmountText);
+        this.container.addChild(rect, this.moneyText, 
+            betText, this.winAmountText);
     }
 }
